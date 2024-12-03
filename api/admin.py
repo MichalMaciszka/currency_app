@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Currency, ExchangeRate
 
-# Register your models here.
 @admin.register(Currency)
 class CurrencyAdmin(admin.ModelAdmin):
     list_display = ('id', 'code')

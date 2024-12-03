@@ -11,7 +11,6 @@ class Command(BaseCommand):
         for code in currencies:
             Currency.objects.get_or_create(code=code)
 
-        # Add exchange rates
         pairs = [('EUR', 'USD'), ('USD', 'JPY'), ('PLN', 'USD')]
         for base, target in pairs:
             pair_code = f"{base}{target}"
@@ -19,10 +18,9 @@ class Command(BaseCommand):
             hist = ticker.history(period="1d")
 
             if not hist.empty:
-                rate = hist['Close'][0]  # Get the latest closing rate
-                timestamp = datetime.now()  # Current time as timestamp
-
-                # Save the new record (historical entry)
+                rate = hist['Close'][0]
+                timestamp = datetime.now()
+                
                 ExchangeRate.objects.create(
                     currency_pair=pair_code,
                     exchange_rate=rate,

@@ -14,10 +14,6 @@ class CurrencyListView(ListAPIView):
     filter_backends = [OrderingFilter]
     ordering_fields = ['code']
     ordering = ['code']
-    # def get(self, request):
-    #     currencies = Currency.objects.all()
-    #     serializer = CurrencySerializer(currencies, many=True)
-    #     return Response(serializer.data)
 
 class ExchangeRateView(APIView):
     def get(self, request, base, target):
